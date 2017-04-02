@@ -17,14 +17,22 @@ class grid{
       char board[GRID_SIZE];
       char turn;
       char turn_char[2];
-      int boardIndex(string);
+      bool checkRight(int);
+      bool checkLeft(int);
+      bool checkUp(int);
+      bool checkDown(int);
+      bool checkNE(int);
+      bool checkNW(int);
+      bool checkSE(int);
+      bool checkSW(int);
   public:
       grid();
+      grid(const grid&);
       char getState(string);
       void setState(string);
       void setTurn(char);
-
-
+      int boardIndex(string);
+      unsigned char checkBound(int);
+      bool goalState();
 };
-
 #endif

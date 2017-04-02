@@ -6,8 +6,11 @@ using namespace std;
 int
 main(){
     grid g;
-    g.setState("A3");
-    char state = g.getState("A3");
-    cout << state << endl;
+    g.setState("C1");
+    g.setTurn(1);
+    g.setState("B1");
+    g.setTurn(0);
+    cout << +g.checkBound(g.boardIndex("A1")) << endl;
+    //cout << state << endl;
     return 0;
 }
