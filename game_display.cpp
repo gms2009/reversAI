@@ -1,35 +1,47 @@
 #include <iostream>
+#include "grid.h"
 
 using namespace std;
 
-void drawBoard(int states[64])
+void drawBoard(grid states)
 {
+  //Row names
   char line = 'A';
+  //column names.  
   cout << "       1         2         3         4         5         6         7         8\n";   
+  
+  //for loop governs which row you're working on.
   for(int i = 0; i < 8; i++)
     {
+      //for loop governs which line of the row you're working on.
       for(int j = 0; j < 5; j++)
 	{
+    //prints left border.
 	  if(j != 2)
 	    cout << "  X";
+    //prints out the character for the row names.
 	  else if(j == 2 && line < 'I')
 	    {
 	      cout << line << " X";
 	      line++;
 	    }
+    //works with what columns to print in.
 	  for(int k = 0; k < 8; k++)
 	    {
+        //print a line.
 	      if(j == 0 && k == 0)
 		cout << "XXXXXXXXX";
 	      else if(j == 0 && k > 0)
 		cout << "XXXXXXXXX";
-	      else if((j == 1 || j == 4) && states[(8 * i + k)] == 1)
+        //prints white
+	      else if((j == 1 || j == 4) && states.getState(8 * i + k) == 'W')
 		cout << "   XXX   ";
-	      else if((j == 2 || j == 3) && states[(8 * i + k)] == 1)
+	      else if((j == 2 || j == 3) && states.getState(8 * i + k) == 'W')
 		cout << "  XXXXX  ";
-	      else if((j == 1 || j == 4) && states[(8 * i + k)] == 2)
+	      //print black
+        else if((j == 1 || j == 4) && states.getState(8 * i + k) == 'B')
 		cout << "   X X   ";
-	      else if((j == 2 || j == 3) && states[(8 * i + k)] == 2)
+	      else if((j == 2 || j == 3) && states.getState(8 * i + k) == 'B')
 		cout << "  X   X  ";
 	      else
 		cout << "         ";
@@ -40,19 +52,7 @@ void drawBoard(int states[64])
 	}
     }
   
-  for(int i = 0; i < 5; i++)
+  for(int i = 0; i < 1; i++)
     cout << "  XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n";   
 }
 
-int main()
-{
-  int state[64];
-  for(int i = 0; i < 64; i++)
-    state[i] = 0;
-  state[27] = 1;
-  state[28] = 2;
-  state[35] = 2;
-  state[36] = 1;
-  state[0] = 1;
-  drawBoard(state);
-}

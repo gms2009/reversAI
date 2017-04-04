@@ -29,10 +29,14 @@ class grid{
       grid();
       grid(const grid&);
       char getState(string);
+      char getState(int);
+      void setState(int);
       void setState(string);
       void setTurn(char);
+      int getTurn();
       int boardIndex(string);
       unsigned char checkBound(int);
       bool goalState();
+      void placeChecker(int);
 };
 #endif
